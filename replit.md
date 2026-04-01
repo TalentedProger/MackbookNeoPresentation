@@ -4,6 +4,23 @@
 
 pnpm workspace monorepo using TypeScript. Each package manages its own dependencies.
 
+## Artifacts
+
+### `artifacts/macbook-neo` — MacBook Neo Product Website
+
+Premium Apple-style product showcase site for the MacBook Neo 2026. Built with React + Vite, TailwindCSS v4, and Framer Motion.
+
+**Features:**
+- Light/dark theme toggle with animated transitions
+- Russian/English language switcher (full i18n)
+- 10+ cinematic sections: Hero, Intro, Chip, Display, Battery, Colors, Features, Specs, CTA, Footer
+- All product images embedded from `attached_assets/`
+- Framer Motion scroll parallax, staggered reveal animations, floating images
+- Glassmorphism and Apple-style aesthetics
+- Fully responsive (mobile-first)
+
+**Route:** `/` (root)
+
 ## Stack
 
 - **Monorepo tool**: pnpm workspaces
