@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { useTheme } from "@/contexts/ThemeContext";
 import { getText, t } from "@/lib/translations";
-import colorsImg from "@assets/image-Photoroom_(78)_1775060731213.png";
+import colorsImg from "@assets/generated_images/macbook_four_colors_fan.png";
 
 export default function IntroSection() {
   const { isDark, isRu } = useTheme();
@@ -77,7 +77,7 @@ export default function IntroSection() {
             </motion.div>
           </div>
 
-          {/* Image */}
+          {/* Image — no movement animations */}
           <motion.div
             initial={{ opacity: 0, x: 60, scale: 0.95 }}
             animate={inView ? { opacity: 1, x: 0, scale: 1 } : {}}

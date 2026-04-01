@@ -1,0 +1,38 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "TlFJxMxdNiDJh4h3T7Z7t"
+uri = "file://attached_assets/generated_images/macbook_hero_front.png"
+type = "image"
+title = "macbook hero front"
+
+[[generated]]
+id = "O-7hTIbJgFOpitrDfR55u"
+uri = "file://attached_assets/generated_images/macbook_silver_top.png"
+type = "image"
+title = "macbook silver top"
+
+[[generated]]
+id = "1N1ELb_N2dc9Df1VVegjL"
+uri = "file://attached_assets/generated_images/macbook_four_colors_fan.png"
+type = "image"
+title = "macbook four colors fan"
+
+[[generated]]
+id = "P05CVwA46MYU2lvqDjT-j"
+uri = "file://attached_assets/generated_images/macbook_open_display.png"
+type = "image"
+title = "macbook open display"
+
+[[generated]]
+id = "m0iXlZm6ngishpBejKvaA"
+uri = "file://attached_assets/generated_images/macbook_hands_four.png"
+type = "image"
+title = "macbook hands four"
+
+[[generated]]
+id = "UI60NneWML1XlusKJE3CC"
+uri = "file://attached_assets/generated_images/macbook_cta.png"
+type = "image"
+title = "macbook cta"

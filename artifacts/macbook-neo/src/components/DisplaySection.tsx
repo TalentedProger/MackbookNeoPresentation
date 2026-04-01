@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { useTheme } from "@/contexts/ThemeContext";
 import { getText, t } from "@/lib/translations";
-import detailImg from "@assets/image_1775060466757.png";
+import displayImg from "@assets/generated_images/macbook_open_display.png";
 
 export default function DisplaySection() {
   const { isDark, isRu } = useTheme();
@@ -108,19 +108,17 @@ export default function DisplaySection() {
           ))}
         </motion.div>
 
-        {/* Display image */}
+        {/* Display image — static, no movement */}
         <motion.div
           initial={{ opacity: 0, y: 60, scale: 0.95 }}
           animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
           transition={{ duration: 1, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
-          className={`rounded-3xl overflow-hidden border ${
-            isDark ? "border-white/[0.06]" : "border-black/[0.06]"
-          }`}
+          className="flex justify-center"
         >
           <img
-            src={detailImg}
-            alt="MacBook Neo display detail"
-            className="w-full object-contain"
+            src={displayImg}
+            alt="MacBook Neo display"
+            className="w-full max-w-2xl object-contain drop-shadow-2xl"
             data-testid="img-display"
           />
         </motion.div>

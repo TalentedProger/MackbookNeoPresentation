@@ -2,8 +2,8 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useTheme } from "@/contexts/ThemeContext";
 import { getText, t } from "@/lib/translations";
-import hand1Img from "@assets/image-Photoroom_(76)_1775060320070.png";
-import hand2Img from "@assets/image-Photoroom_(77)_1775060354792.png";
+import heroFrontImg from "@assets/generated_images/macbook_hero_front.png";
+import silverTopImg from "@assets/generated_images/macbook_silver_top.png";
 
 export default function HeroSection() {
   const { isDark, isRu } = useTheme();
@@ -92,7 +92,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.7 }}
-          className="flex items-center gap-3 mb-10"
+          className="flex items-center gap-3 mb-16"
         >
           <motion.a
             href="#cta"
@@ -122,38 +122,29 @@ export default function HeroSection() {
           </motion.a>
         </motion.div>
 
-        {/* Product Images */}
+        {/* Product Images — no movement animations */}
         <motion.div
           initial={{ opacity: 0, y: 60, scale: 0.95 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-          className="relative flex items-end justify-center gap-4 md:gap-8 max-w-4xl w-full"
+          className="relative flex items-end justify-center gap-6 md:gap-12 max-w-4xl w-full"
         >
-          <motion.div
-            animate={{ y: [0, -12, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
-            className="relative w-48 md:w-64 lg:w-72"
-          >
+          <div className="relative w-52 md:w-72 lg:w-80">
             <img
-              src={hand1Img}
-              alt="MacBook Neo held in hand"
+              src={heroFrontImg}
+              alt="MacBook Neo front view"
               className="w-full object-contain drop-shadow-2xl"
               data-testid="img-hero-hand1"
             />
-          </motion.div>
+          </div>
 
-          <motion.div
-            animate={{ y: [0, -16, 0] }}
-            transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
-            className="relative w-52 md:w-72 lg:w-80 -mt-8"
-          >
+          <div className="relative w-44 md:w-60 lg:w-72 -mt-8">
             <img
-              src={hand2Img}
-              alt="MacBook Neo held up"
+              src={silverTopImg}
+              alt="MacBook Neo top view"
               className="w-full object-contain drop-shadow-2xl"
               data-testid="img-hero-hand2"
             />
-            {/* Caption */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -166,7 +157,7 @@ export default function HeroSection() {
             >
               {getText(t.hero.holdingCaption, lang)}
             </motion.div>
-          </motion.div>
+          </div>
         </motion.div>
       </motion.div>
 

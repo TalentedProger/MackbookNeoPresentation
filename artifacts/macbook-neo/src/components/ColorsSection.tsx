@@ -2,8 +2,8 @@ import { useState, useRef } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useTheme } from "@/contexts/ThemeContext";
 import { getText, t } from "@/lib/translations";
-import colorsHandImg from "@assets/image-Photoroom_(80)_1775060848696.png";
-import silverBackImg from "@assets/image-Photoroom_(79)_1775060760038.png";
+import colorsHandImg from "@assets/generated_images/macbook_hands_four.png";
+import silverBackImg from "@assets/generated_images/macbook_silver_top.png";
 
 const colors = [
   {
@@ -41,7 +41,7 @@ export default function ColorsSection() {
   const lang = isRu ? "ru" : "en";
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
-  const [activeColor, setActiveColor] = useState(2); // default yellow
+  const [activeColor, setActiveColor] = useState(2);
 
   const headlineLines = getText(t.colors.headline, lang).split("\n");
 
@@ -154,17 +154,18 @@ export default function ColorsSection() {
               </motion.div>
             </AnimatePresence>
 
+            {/* Image — static, no movement */}
             <div className="mt-10">
               <img
                 src={silverBackImg}
-                alt="MacBook Neo back view"
+                alt="MacBook Neo top view"
                 className="w-full max-w-md object-contain drop-shadow-xl"
                 data-testid="img-colors-back"
               />
             </div>
           </motion.div>
 
-          {/* Hands holding colors image */}
+          {/* Four colors image — static, no movement */}
           <motion.div
             initial={{ opacity: 0, x: 40, scale: 0.95 }}
             animate={inView ? { opacity: 1, x: 0, scale: 1 } : {}}
@@ -172,7 +173,7 @@ export default function ColorsSection() {
           >
             <img
               src={colorsHandImg}
-              alt="MacBook Neo colors held by hands"
+              alt="MacBook Neo in four colors"
               className="w-full object-contain drop-shadow-2xl"
               data-testid="img-colors-hands"
             />

@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { useTheme } from "@/contexts/ThemeContext";
 import { getText, t } from "@/lib/translations";
-import hand1Img from "@assets/image-Photoroom_(76)_1775060320070.png";
+import ctaImg from "@assets/generated_images/macbook_cta.png";
 
 export default function CTASection() {
   const { isDark, isRu } = useTheme();
@@ -27,25 +27,21 @@ export default function CTASection() {
       }`} />
 
       <div ref={ref} className="relative max-w-5xl mx-auto px-6 md:px-12 py-24 md:py-40 text-center">
-        {/* Floating laptop image */}
+        {/* Static laptop image — no floating animation */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
           className="flex justify-center mb-12"
         >
-          <motion.div
-            animate={{ y: [0, -12, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            className="w-48 md:w-64"
-          >
+          <div className="w-56 md:w-72">
             <img
-              src={hand1Img}
+              src={ctaImg}
               alt="MacBook Neo"
               className="w-full object-contain drop-shadow-2xl"
               data-testid="img-cta"
             />
-          </motion.div>
+          </div>
         </motion.div>
 
         {/* Apple logo */}
