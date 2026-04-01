@@ -1,6 +1,7 @@
 import { Switch, Route, Router as WouterRouter } from "wouter";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ThemeProvider } from "@/contexts/ThemeContext";
+import { ModalProvider } from "@/contexts/ModalContext";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import IntroSection from "@/components/IntroSection";
@@ -12,6 +13,7 @@ import FeaturesSection from "@/components/FeaturesSection";
 import SpecsSection from "@/components/SpecsSection";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
+import PreOrderModal from "@/components/PreOrderModal";
 
 const queryClient = new QueryClient();
 
@@ -29,6 +31,7 @@ function MacBookNeoPage() {
       <SpecsSection />
       <CTASection />
       <Footer />
+      <PreOrderModal />
     </div>
   );
 }
@@ -57,9 +60,11 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
-        <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
-          <Router />
-        </WouterRouter>
+        <ModalProvider>
+          <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
+            <Router />
+          </WouterRouter>
+        </ModalProvider>
       </ThemeProvider>
     </QueryClientProvider>
   );

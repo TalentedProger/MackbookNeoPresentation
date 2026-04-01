@@ -2,38 +2,13 @@ import { useState, useRef } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useTheme } from "@/contexts/ThemeContext";
 import { getText, t } from "@/lib/translations";
-import colorsHandImg from "@assets/generated_images/macbook_hands_four.png";
-import silverBackImg from "@assets/generated_images/macbook_silver_top.png";
+import colorsFanImg from "@assets/image-Photoroom_(78)_1775063030459.png";
 
 const colors = [
-  {
-    id: "silver",
-    hex: "#E8E8E8",
-    darkHex: "#C0C0C0",
-    gradient: "linear-gradient(135deg, #f0f0f0, #c8c8c8)",
-    labelKey: "silver" as const,
-  },
-  {
-    id: "pink",
-    hex: "#F5C5C5",
-    darkHex: "#D9A0A0",
-    gradient: "linear-gradient(135deg, #fce0e0, #e8b0b0)",
-    labelKey: "pink" as const,
-  },
-  {
-    id: "yellow",
-    hex: "#D4E87A",
-    darkHex: "#BBCF5A",
-    gradient: "linear-gradient(135deg, #e8f09a, #c0d060)",
-    labelKey: "yellow" as const,
-  },
-  {
-    id: "blue",
-    hex: "#3D4F6E",
-    darkHex: "#2D3F5E",
-    gradient: "linear-gradient(135deg, #4a607a, #2a3858)",
-    labelKey: "blue" as const,
-  },
+  { id: "silver", hex: "#E8E8E8", gradient: "linear-gradient(135deg, #f0f0f0, #c8c8c8)", labelKey: "silver" as const },
+  { id: "pink", hex: "#F5C5C5", gradient: "linear-gradient(135deg, #fce0e0, #e8b0b0)", labelKey: "pink" as const },
+  { id: "yellow", hex: "#D4E87A", gradient: "linear-gradient(135deg, #e8f09a, #c0d060)", labelKey: "yellow" as const },
+  { id: "blue", hex: "#3D4F6E", gradient: "linear-gradient(135deg, #4a607a, #2a3858)", labelKey: "blue" as const },
 ];
 
 export default function ColorsSection() {
@@ -52,15 +27,13 @@ export default function ColorsSection() {
         isDark ? "bg-[#0a0a0a]" : "bg-[#f5f5f7]"
       }`}
     >
-      {/* Ambient color glow */}
       <motion.div
-        animate={{ background: `radial-gradient(ellipse 60% 50% at 70% 50%, ${colors[activeColor].hex}30, transparent)` }}
+        animate={{ background: `radial-gradient(ellipse 60% 50% at 70% 50%, ${colors[activeColor].hex}28, transparent)` }}
         transition={{ duration: 0.8 }}
         className="absolute inset-0 pointer-events-none"
       />
 
       <div ref={ref} className="relative max-w-7xl mx-auto px-6 md:px-12 lg:px-20 py-24 md:py-40">
-        {/* Header */}
         <div className="mb-16 lg:mb-20">
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -94,9 +67,7 @@ export default function ColorsSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.3 }}
-            className={`text-lg max-w-lg leading-relaxed ${
-              isDark ? "text-white/55" : "text-black/50"
-            }`}
+            className={`text-lg max-w-lg leading-relaxed ${isDark ? "text-white/55" : "text-black/50"}`}
           >
             {getText(t.colors.body, lang)}
           </motion.p>
@@ -120,19 +91,13 @@ export default function ColorsSection() {
                   className="relative"
                 >
                   <div
-                    className={`w-8 h-8 rounded-full transition-all duration-300 ${
-                      activeColor === i ? "ring-2 ring-offset-2" : ""
-                    }`}
-                    style={{
-                      background: color.gradient,
-                      ringColor: color.hex,
-                      ringOffsetColor: isDark ? "#0a0a0a" : "#f5f5f7",
-                    }}
+                    className="w-8 h-8 rounded-full"
+                    style={{ background: color.gradient }}
                   />
                   {activeColor === i && (
                     <motion.div
                       layoutId="colorIndicator"
-                      className="absolute -inset-1 rounded-full border-2"
+                      className="absolute -inset-1.5 rounded-full border-2"
                       style={{ borderColor: color.hex }}
                     />
                   )}
@@ -153,26 +118,16 @@ export default function ColorsSection() {
                 {getText(t.colors[colors[activeColor].labelKey], lang)}
               </motion.div>
             </AnimatePresence>
-
-            {/* Image — static, no movement */}
-            <div className="mt-10">
-              <img
-                src={silverBackImg}
-                alt="MacBook Neo top view"
-                className="w-full max-w-md object-contain drop-shadow-xl"
-                data-testid="img-colors-back"
-              />
-            </div>
           </motion.div>
 
-          {/* Four colors image — static, no movement */}
+          {/* 4 colors fan image */}
           <motion.div
             initial={{ opacity: 0, x: 40, scale: 0.95 }}
             animate={inView ? { opacity: 1, x: 0, scale: 1 } : {}}
             transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
           >
             <img
-              src={colorsHandImg}
+              src={colorsFanImg}
               alt="MacBook Neo in four colors"
               className="w-full object-contain drop-shadow-2xl"
               data-testid="img-colors-hands"

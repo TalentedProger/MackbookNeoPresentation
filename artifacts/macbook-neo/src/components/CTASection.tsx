@@ -1,11 +1,13 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { useTheme } from "@/contexts/ThemeContext";
+import { useModal } from "@/contexts/ModalContext";
 import { getText, t } from "@/lib/translations";
 import ctaImg from "@assets/generated_images/macbook_cta.png";
 
 export default function CTASection() {
   const { isDark, isRu } = useTheme();
+  const { openPreOrder } = useModal();
   const lang = isRu ? "ru" : "en";
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
@@ -94,8 +96,8 @@ export default function CTASection() {
           transition={{ duration: 0.7, delay: 0.5 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-6"
         >
-          <motion.a
-            href="#"
+          <motion.button
+            onClick={openPreOrder}
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.96 }}
             data-testid="btn-cta-buy"
@@ -106,7 +108,7 @@ export default function CTASection() {
             }`}
           >
             {getText(t.cta.btn1, lang)}
-          </motion.a>
+          </motion.button>
           <motion.a
             href="#display"
             whileHover={{ scale: 1.04 }}

@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { useTheme } from "@/contexts/ThemeContext";
 import { getText, t } from "@/lib/translations";
-import colorsImg from "@assets/generated_images/macbook_four_colors_fan.png";
+import handImg from "@assets/image-Photoroom_(77)_1775062987389.png";
 
 export default function IntroSection() {
   const { isDark, isRu } = useTheme();
@@ -77,26 +77,19 @@ export default function IntroSection() {
             </motion.div>
           </div>
 
-          {/* Image — no movement animations */}
+          {/* Image */}
           <motion.div
             initial={{ opacity: 0, x: 60, scale: 0.95 }}
             animate={inView ? { opacity: 1, x: 0, scale: 1 } : {}}
             transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             className="relative flex justify-center"
           >
-            <div className="relative">
-              <img
-                src={colorsImg}
-                alt="MacBook Neo in four colors"
-                className="w-full max-w-lg object-contain drop-shadow-2xl"
-                data-testid="img-intro-colors"
-              />
-              <div className={`absolute inset-0 rounded-3xl pointer-events-none ${
-                isDark
-                  ? "bg-[radial-gradient(ellipse_50%_50%_at_50%_100%,rgba(162,212,75,0.15),transparent)]"
-                  : "bg-[radial-gradient(ellipse_50%_50%_at_50%_100%,rgba(162,212,75,0.2),transparent)]"
-              }`} />
-            </div>
+            <img
+              src={handImg}
+              alt="MacBook Neo held in hand"
+              className="w-full max-w-md object-contain drop-shadow-2xl"
+              data-testid="img-intro-colors"
+            />
           </motion.div>
         </div>
       </div>
