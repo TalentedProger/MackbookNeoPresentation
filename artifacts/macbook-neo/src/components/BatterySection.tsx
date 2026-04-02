@@ -17,7 +17,6 @@ export default function BatterySection() {
         isDark ? "bg-black" : "bg-white"
       }`}
     >
-      {/* Large ambient */}
       <div className={`absolute inset-0 pointer-events-none ${
         isDark
           ? "bg-[radial-gradient(ellipse_60%_40%_at_80%_50%,rgba(99,179,237,0.08),transparent)]"
@@ -26,14 +25,13 @@ export default function BatterySection() {
 
       <div ref={ref} className="relative max-w-7xl mx-auto px-6 md:px-12 lg:px-20 py-24 md:py-40">
         <div className="grid lg:grid-cols-2 gap-20 items-center">
-          {/* Left: visual */}
+          {/* Left: battery ring visual */}
           <motion.div
             initial={{ opacity: 0, x: -60 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
             className="flex justify-center lg:justify-start"
           >
-            {/* Battery illustration */}
             <div className="relative w-64 h-64 md:w-80 md:h-80 flex items-center justify-center">
               {/* Outer ring */}
               <motion.div
@@ -105,41 +103,13 @@ export default function BatterySection() {
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.7, delay: 0.35 }}
-              className={`text-lg leading-relaxed mb-10 max-w-md ${
+              className={`text-lg leading-relaxed max-w-md ${
                 isDark ? "text-white/55" : "text-black/50"
               }`}
               data-testid="battery-body"
             >
               {getText(t.battery.body, lang)}
             </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.7, delay: 0.45 }}
-              className="grid grid-cols-2 gap-3"
-            >
-              <div className={`rounded-2xl p-4 border ${
-                isDark ? "bg-white/[0.03] border-white/[0.07]" : "bg-[#f5f5f7] border-black/[0.06]"
-              }`}>
-                <div className={`text-2xl font-bold mb-1 ${isDark ? "text-white" : "text-black"}`}>
-                  {getText(t.battery.webLabel, lang).split(" ")[0]}
-                </div>
-                <div className={`text-xs ${isDark ? "text-white/40" : "text-black/40"}`}>
-                  {getText(t.battery.webLabel, lang).split(" ").slice(1).join(" ")}
-                </div>
-              </div>
-              <div className={`rounded-2xl p-4 border ${
-                isDark ? "bg-white/[0.03] border-white/[0.07]" : "bg-[#f5f5f7] border-black/[0.06]"
-              }`}>
-                <div className={`text-lg font-bold mb-1 ${isDark ? "text-white" : "text-black"}`}>
-                  {getText(t.battery.silentLabel, lang)}
-                </div>
-                <div className={`text-xs ${isDark ? "text-white/40" : "text-black/40"}`}>
-                  {getText(t.battery.silentDesc, lang)}
-                </div>
-              </div>
-            </motion.div>
           </div>
         </div>
       </div>

@@ -34,53 +34,53 @@ export default function ColorsSection() {
       />
 
       <div ref={ref} className="relative max-w-7xl mx-auto px-6 md:px-12 lg:px-20 py-24 md:py-40">
-        <div className="mb-16 lg:mb-20">
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
-            className={`text-sm font-semibold tracking-widest uppercase mb-4 ${
-              isDark ? "text-white/40" : "text-black/35"
-            }`}
-          >
-            {getText(t.colors.eyebrow, lang)}
-          </motion.p>
-
-          <h2 className="overflow-hidden mb-4">
-            {headlineLines.map((line, i) => (
-              <motion.span
-                key={i}
-                initial={{ y: 80, opacity: 0 }}
-                animate={inView ? { y: 0, opacity: 1 } : {}}
-                transition={{ duration: 0.7, delay: 0.1 + i * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                className={`block text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight ${
-                  isDark ? "text-white" : "text-black"
-                }`}
-                data-testid={`colors-headline-${i}`}
-              >
-                {line}
-              </motion.span>
-            ))}
-          </h2>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.3 }}
-            className={`text-lg max-w-lg leading-relaxed ${isDark ? "text-white/55" : "text-black/50"}`}
-          >
-            {getText(t.colors.body, lang)}
-          </motion.p>
-        </div>
-
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Color picker */}
+        <div className="grid lg:grid-cols-2 gap-16 items-stretch min-h-[500px]">
+          {/* Left: eyebrow + headline + body + color picker */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className="flex flex-col justify-center"
           >
-            <div className="flex items-center gap-4 mb-8">
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6 }}
+              className={`text-sm font-semibold tracking-widest uppercase mb-4 ${
+                isDark ? "text-white/40" : "text-black/35"
+              }`}
+            >
+              {getText(t.colors.eyebrow, lang)}
+            </motion.p>
+
+            <h2 className="overflow-hidden mb-4">
+              {headlineLines.map((line, i) => (
+                <motion.span
+                  key={i}
+                  initial={{ y: 80, opacity: 0 }}
+                  animate={inView ? { y: 0, opacity: 1 } : {}}
+                  transition={{ duration: 0.7, delay: 0.1 + i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+                  className={`block text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight ${
+                    isDark ? "text-white" : "text-black"
+                  }`}
+                  data-testid={`colors-headline-${i}`}
+                >
+                  {line}
+                </motion.span>
+              ))}
+            </h2>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.7, delay: 0.3 }}
+              className={`text-lg max-w-lg leading-relaxed mb-10 ${isDark ? "text-white/55" : "text-black/50"}`}
+            >
+              {getText(t.colors.body, lang)}
+            </motion.p>
+
+            {/* Color picker */}
+            <div className="flex items-center gap-4 mb-6">
               {colors.map((color, i) => (
                 <motion.button
                   key={color.id}
@@ -120,16 +120,17 @@ export default function ColorsSection() {
             </AnimatePresence>
           </motion.div>
 
-          {/* 4 colors fan image */}
+          {/* Right: image — full height of the text container */}
           <motion.div
             initial={{ opacity: 0, x: 40, scale: 0.95 }}
             animate={inView ? { opacity: 1, x: 0, scale: 1 } : {}}
             transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="flex items-center justify-center h-full"
           >
             <img
               src={colorsFanImg}
               alt="MacBook Neo in four colors"
-              className="w-full object-contain drop-shadow-2xl"
+              className="h-full w-auto max-h-[600px] object-contain drop-shadow-2xl"
               data-testid="img-colors-hands"
             />
           </motion.div>
