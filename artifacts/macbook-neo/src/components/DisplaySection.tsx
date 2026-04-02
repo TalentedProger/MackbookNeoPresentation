@@ -35,43 +35,31 @@ export default function DisplaySection() {
       </div>
 
       <div ref={ref} className="relative max-w-7xl mx-auto px-6 md:px-12 lg:px-20 py-24 md:py-40">
-        {/* Eyebrow — centered above the 2-col grid */}
+        {/* Eyebrow */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className={`text-sm font-semibold tracking-widest uppercase mb-4 ${
+          className={`text-sm font-semibold tracking-widest uppercase mb-8 ${
             isDark ? "text-white/40" : "text-black/35"
           }`}
         >
           {getText(t.display.eyebrow, lang)}
         </motion.p>
 
-        <div className="grid lg:grid-cols-2 gap-16 md:gap-20 items-center">
-          {/* Left: display image */}
-          <motion.div
-            initial={{ opacity: 0, x: -50, scale: 0.95 }}
-            animate={inView ? { opacity: 1, x: 0, scale: 1 } : {}}
-            transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="flex justify-center"
-          >
-            <img
-              src={displayImg}
-              alt="MacBook Neo display"
-              className="w-full max-w-xl object-contain drop-shadow-2xl"
-              data-testid="img-display"
-            />
-          </motion.div>
+        {/* Equal-height two-column grid */}
+        <div className="grid lg:grid-cols-2 gap-16 md:gap-20 items-stretch">
 
-          {/* Right: headline + body + elegant stats */}
-          <div>
-            <h2 className="overflow-hidden mb-5">
+          {/* LEFT column: headline on top + image at bottom */}
+          <div className="flex flex-col">
+            {/* Headline */}
+            <h2 className="overflow-hidden mb-8">
               {headlineLines.map((line, i) => (
                 <motion.span
                   key={i}
                   initial={{ y: 80, opacity: 0 }}
                   animate={inView ? { y: 0, opacity: 1 } : {}}
-                  transition={{ duration: 0.7, delay: 0.15 + i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+                  transition={{ duration: 0.7, delay: 0.1 + i * 0.1, ease: [0.22, 1, 0.36, 1] }}
                   className={`block text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight ${
                     isDark ? "text-white" : "text-black"
                   }`}
@@ -82,6 +70,24 @@ export default function DisplaySection() {
               ))}
             </h2>
 
+            {/* Image fills remaining height, aligned to bottom */}
+            <motion.div
+              initial={{ opacity: 0, y: 40, scale: 0.96 }}
+              animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
+              transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+              className="flex-1 flex items-end"
+            >
+              <img
+                src={displayImg}
+                alt="MacBook Neo display"
+                className="w-full object-contain drop-shadow-2xl"
+                data-testid="img-display"
+              />
+            </motion.div>
+          </div>
+
+          {/* RIGHT column: body text + elegant stats */}
+          <div className="flex flex-col justify-center">
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}

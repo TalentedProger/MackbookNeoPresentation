@@ -11,7 +11,6 @@ export default function HeroSection() {
   const lang = isRu ? "ru" : "en";
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"], layoutEffect: false });
-  const imgY = useTransform(scrollYProgress, [0, 1], [0, 60]);
   const contentOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
 
   return (
@@ -19,13 +18,13 @@ export default function HeroSection() {
       ref={ref}
       id="overview"
       className={`relative min-h-screen flex flex-col items-center overflow-hidden transition-colors duration-700 ${
-        isDark ? "bg-[#1a1a1a]" : "bg-[#f5f5f7]"
+        isDark ? "bg-black" : "bg-[#f5f5f7]"
       }`}
     >
-      {/* Text content */}
+      {/* Text content — fixed at top */}
       <motion.div
         style={{ opacity: contentOpacity }}
-        className="relative z-10 flex flex-col items-center text-center px-6 pt-32 md:pt-36 w-full"
+        className="relative z-10 flex flex-col items-center text-center px-6 pt-32 md:pt-36 w-full shrink-0"
       >
         {/* Eyebrow */}
         <motion.p
@@ -88,22 +87,20 @@ export default function HeroSection() {
         </motion.div>
       </motion.div>
 
-      {/* Hero image — hand holding MacBook */}
+      {/* Hero image — always pushed to bottom via mt-auto + flex-1 */}
       <motion.div
-        style={{ y: imgY }}
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
-        className="relative z-10 w-full max-w-xl md:max-w-2xl mx-auto px-4 mt-6"
+        className="relative z-10 w-full max-w-sm sm:max-w-lg md:max-w-2xl mx-auto px-4 mt-auto flex items-end"
       >
         <img
           src={heroImg}
           alt="MacBook Neo"
-          className="w-full object-contain"
+          className="w-full object-contain object-bottom"
           data-testid="img-hero"
         />
       </motion.div>
-
     </section>
   );
 }
