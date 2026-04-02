@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useTheme } from "@/contexts/ThemeContext";
 import { useModal } from "@/contexts/ModalContext";
 import { getText, t } from "@/lib/translations";
-import heroImg from "@assets/image-Photoroom_(77)_1775146512999.png";
+import heroImg from "@assets/mac_neo-Photoroom_1775147607008.png";
 
 export default function HeroSection() {
   const { isDark, isRu } = useTheme();
@@ -104,23 +104,6 @@ export default function HeroSection() {
         />
       </motion.div>
 
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.6, duration: 0.8 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
-      >
-        <motion.div
-          animate={{ y: [0, 6, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-          className={`w-5 h-8 rounded-full border flex items-start justify-center pt-1 ${
-            isDark ? "border-white/25" : "border-black/20"
-          }`}
-        >
-          <div className={`w-1 h-2 rounded-full ${isDark ? "bg-white/50" : "bg-black/35"}`} />
-        </motion.div>
-      </motion.div>
     </section>
   );
 }

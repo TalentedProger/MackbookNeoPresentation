@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { useTheme } from "@/contexts/ThemeContext";
 import { getText, t } from "@/lib/translations";
-import displayImg from "@assets/generated_images/macbook_open_display.png";
+import displayImg from "@assets/image-Photoroom_(85)_1775147833561.png";
 
 export default function DisplaySection() {
   const { isDark, isRu } = useTheme();
@@ -35,93 +35,100 @@ export default function DisplaySection() {
       </div>
 
       <div ref={ref} className="relative max-w-7xl mx-auto px-6 md:px-12 lg:px-20 py-24 md:py-40">
-        {/* Eyebrow */}
+        {/* Eyebrow — centered above the 2-col grid */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className={`text-sm font-semibold tracking-widest uppercase mb-4 text-center ${
+          className={`text-sm font-semibold tracking-widest uppercase mb-4 ${
             isDark ? "text-white/40" : "text-black/35"
           }`}
         >
           {getText(t.display.eyebrow, lang)}
         </motion.p>
 
-        <h2 className="text-center mb-4 overflow-hidden">
-          {headlineLines.map((line, i) => (
-            <motion.span
-              key={i}
-              initial={{ y: 80, opacity: 0 }}
-              animate={inView ? { y: 0, opacity: 1 } : {}}
-              transition={{ duration: 0.7, delay: 0.1 + i * 0.1, ease: [0.22, 1, 0.36, 1] }}
-              className={`block text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight ${
-                isDark ? "text-white" : "text-black"
-              }`}
-              data-testid={`display-headline-${i}`}
-            >
-              {line}
-            </motion.span>
-          ))}
-        </h2>
+        <div className="grid lg:grid-cols-2 gap-16 md:gap-20 items-center">
+          {/* Left: display image */}
+          <motion.div
+            initial={{ opacity: 0, x: -50, scale: 0.95 }}
+            animate={inView ? { opacity: 1, x: 0, scale: 1 } : {}}
+            transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            className="flex justify-center"
+          >
+            <img
+              src={displayImg}
+              alt="MacBook Neo display"
+              className="w-full max-w-xl object-contain drop-shadow-2xl"
+              data-testid="img-display"
+            />
+          </motion.div>
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.3 }}
-          className={`text-center text-lg max-w-xl mx-auto mb-16 leading-relaxed ${
-            isDark ? "text-white/55" : "text-black/50"
-          }`}
-        >
-          {getText(t.display.body, lang)}
-        </motion.p>
+          {/* Right: headline + body + elegant stats */}
+          <div>
+            <h2 className="overflow-hidden mb-5">
+              {headlineLines.map((line, i) => (
+                <motion.span
+                  key={i}
+                  initial={{ y: 80, opacity: 0 }}
+                  animate={inView ? { y: 0, opacity: 1 } : {}}
+                  transition={{ duration: 0.7, delay: 0.15 + i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+                  className={`block text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight ${
+                    isDark ? "text-white" : "text-black"
+                  }`}
+                  data-testid={`display-headline-${i}`}
+                >
+                  {line}
+                </motion.span>
+              ))}
+            </h2>
 
-        {/* Stats */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.35 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-16"
-        >
-          {stats.map((stat, i) => (
-            <motion.div
-              key={i}
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.4 + i * 0.08 }}
-              whileHover={{ scale: 1.02 }}
-              className={`rounded-2xl p-5 border text-center transition-all ${
-                isDark
-                  ? "bg-white/[0.03] border-white/[0.07] hover:bg-white/[0.06]"
-                  : "bg-white border-black/[0.06] hover:bg-white/80"
+              transition={{ duration: 0.7, delay: 0.35 }}
+              className={`text-lg leading-relaxed mb-12 max-w-md ${
+                isDark ? "text-white/55" : "text-black/50"
               }`}
-              data-testid={`display-stat-${i}`}
             >
-              <div className={`text-xl md:text-2xl font-bold tracking-tight mb-1 ${
-                isDark ? "text-white" : "text-black"
-              }`}>
-                {stat.value}
-              </div>
-              <div className={`text-xs ${isDark ? "text-white/40" : "text-black/40"}`}>
-                {stat.label}
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
+              {getText(t.display.body, lang)}
+            </motion.p>
 
-        {/* Display image — static, no movement */}
-        <motion.div
-          initial={{ opacity: 0, y: 60, scale: 0.95 }}
-          animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
-          transition={{ duration: 1, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
-          className="flex justify-center"
-        >
-          <img
-            src={displayImg}
-            alt="MacBook Neo display"
-            className="w-full max-w-2xl object-contain drop-shadow-2xl"
-            data-testid="img-display"
-          />
-        </motion.div>
+            {/* Elegant stat rows — same style as IntroSection */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              style={{
+                borderTop: `1px solid ${isDark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.1)"}`,
+              }}
+            >
+              {stats.map((stat, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={inView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ duration: 0.5, delay: 0.45 + i * 0.07 }}
+                  className="flex items-center justify-between py-4"
+                  style={{
+                    borderBottom: `1px solid ${isDark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.1)"}`,
+                  }}
+                  data-testid={`display-stat-${i}`}
+                >
+                  <span className={`text-xs font-medium tracking-wide uppercase ${
+                    isDark ? "text-white/35" : "text-black/35"
+                  }`}>
+                    {stat.label}
+                  </span>
+                  <span className={`text-xl md:text-2xl font-black tracking-tighter ${
+                    isDark ? "text-white" : "text-black"
+                  }`}>
+                    {stat.value}
+                  </span>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </div>
       </div>
     </section>
   );

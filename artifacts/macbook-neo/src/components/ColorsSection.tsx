@@ -34,7 +34,7 @@ export default function ColorsSection() {
       />
 
       <div ref={ref} className="relative max-w-7xl mx-auto px-6 md:px-12 lg:px-20 py-24 md:py-40">
-        <div className="grid lg:grid-cols-2 gap-16 items-stretch min-h-[500px]">
+        <div className="grid lg:grid-cols-2 gap-16 items-stretch min-h-[640px]">
           {/* Left: eyebrow + headline + body + color picker */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
@@ -60,7 +60,7 @@ export default function ColorsSection() {
                   initial={{ y: 80, opacity: 0 }}
                   animate={inView ? { y: 0, opacity: 1 } : {}}
                   transition={{ duration: 0.7, delay: 0.1 + i * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                  className={`block text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight ${
+                  className={`block text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight ${
                     isDark ? "text-white" : "text-black"
                   }`}
                   data-testid={`colors-headline-${i}`}
@@ -74,7 +74,7 @@ export default function ColorsSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.7, delay: 0.3 }}
-              className={`text-lg max-w-lg leading-relaxed mb-10 ${isDark ? "text-white/55" : "text-black/50"}`}
+              className={`text-xl max-w-lg leading-relaxed mb-10 ${isDark ? "text-white/55" : "text-black/50"}`}
             >
               {getText(t.colors.body, lang)}
             </motion.p>
@@ -130,7 +130,7 @@ export default function ColorsSection() {
             <img
               src={colorsFanImg}
               alt="MacBook Neo in four colors"
-              className="h-full w-auto max-h-[600px] object-contain drop-shadow-2xl"
+              className="h-full w-auto max-h-[800px] object-contain drop-shadow-2xl"
               data-testid="img-colors-hands"
             />
           </motion.div>

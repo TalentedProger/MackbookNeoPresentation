@@ -6,8 +6,8 @@ import { getText, t } from "@/lib/translations";
 import ctaVideo from "@assets/c7a1c978af111a068b61be5df8373888_720w_1775145554792.mp4";
 
 export default function CTASection() {
-  const { isDark, isRu } = useTheme();
   const { openPreOrder } = useModal();
+  const { isRu } = useTheme();
   const lang = isRu ? "ru" : "en";
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
@@ -32,8 +32,8 @@ export default function CTASection() {
         <source src={ctaVideo} type="video/mp4" />
       </video>
 
-      {/* Dark overlay so text is readable */}
-      <div className="absolute inset-0 bg-black/40" style={{ zIndex: 1 }} />
+      {/* Dark overlay */}
+      <div className="absolute inset-0 bg-black/35" style={{ zIndex: 1 }} />
 
       <div
         ref={ref}
@@ -45,7 +45,7 @@ export default function CTASection() {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={inView ? { opacity: 1, scale: 1 } : {}}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="flex justify-center mb-6"
+          className="flex justify-center mb-8"
         >
           <svg
             viewBox="0 0 24 24"
@@ -55,65 +55,47 @@ export default function CTASection() {
           </svg>
         </motion.div>
 
-        {/* Glassmorphism headline container */}
-        <motion.div
+        {/* Headline — outlined / transparent fill text */}
+        <motion.h2
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-5"
+          transition={{ duration: 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          className="overflow-hidden mb-6"
         >
-          <div
-            className="inline-block rounded-3xl px-8 py-6 mb-2"
-            style={{
-              background: "rgba(255,255,255,0.08)",
-              backdropFilter: "blur(20px)",
-              WebkitBackdropFilter: "blur(20px)",
-              border: "1px solid rgba(255,255,255,0.15)",
-            }}
-          >
-            <h2 className="overflow-hidden">
-              {headlineLines.map((line, i) => (
-                <motion.span
-                  key={i}
-                  initial={{ y: 50, opacity: 0 }}
-                  animate={inView ? { y: 0, opacity: 1 } : {}}
-                  transition={{ duration: 0.8, delay: 0.2 + i * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                  className="block text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight text-white"
-                  data-testid={`cta-headline-${i}`}
-                >
-                  {line}
-                </motion.span>
-              ))}
-            </h2>
-          </div>
-        </motion.div>
+          {headlineLines.map((line, i) => (
+            <motion.span
+              key={i}
+              initial={{ y: 60, opacity: 0 }}
+              animate={inView ? { y: 0, opacity: 1 } : {}}
+              transition={{ duration: 0.8, delay: 0.25 + i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+              className="block text-5xl md:text-7xl lg:text-8xl font-black tracking-tight leading-tight"
+              style={{
+                color: "transparent",
+                WebkitTextStroke: "1.5px rgba(255,255,255,0.85)",
+              }}
+              data-testid={`cta-headline-${i}`}
+            >
+              {line}
+            </motion.span>
+          ))}
+        </motion.h2>
 
-        {/* Glassmorphism body text */}
+        {/* Body text — plain, no background */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, delay: 0.45 }}
+          className="text-lg md:text-xl mb-10 text-white/75"
+          data-testid="cta-body"
+        >
+          {getText(t.cta.body, lang)}
+        </motion.p>
+
+        {/* Buttons — glassmorphism */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.4 }}
-          className="inline-block mb-10 rounded-2xl px-6 py-3"
-          style={{
-            background: "rgba(255,255,255,0.07)",
-            backdropFilter: "blur(16px)",
-            WebkitBackdropFilter: "blur(16px)",
-            border: "1px solid rgba(255,255,255,0.1)",
-          }}
-        >
-          <p
-            className="text-lg md:text-xl text-white/80"
-            data-testid="cta-body"
-          >
-            {getText(t.cta.body, lang)}
-          </p>
-        </motion.div>
-
-        {/* Glassmorphism buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.5 }}
+          transition={{ duration: 0.7, delay: 0.55 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-6"
         >
           <motion.button
@@ -142,7 +124,7 @@ export default function CTASection() {
               background: "rgba(255,255,255,0.06)",
               backdropFilter: "blur(16px)",
               WebkitBackdropFilter: "blur(16px)",
-              border: "1px solid rgba(255,255,255,0.18)",
+              border: "1px solid rgba(255,255,255,0.2)",
               color: "rgba(255,255,255,0.85)",
             }}
           >
@@ -153,7 +135,7 @@ export default function CTASection() {
         <motion.p
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.6, delay: 0.65 }}
+          transition={{ duration: 0.6, delay: 0.7 }}
           className="text-xs text-white/35"
         >
           {getText(t.cta.priceNote, lang)}
