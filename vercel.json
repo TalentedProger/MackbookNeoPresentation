@@ -2,7 +2,7 @@
   "version": 2,
   "installCommand": "pnpm install",
   "buildCommand": "pnpm --filter \"@workspace/macbook-neo\" build",
-  "outputDirectory": "artifacts/macbook-neo/dist",
+  "outputDirectory": "artifacts/macbook-neo/dist/public",
   "functions": {
     "api/index.ts": {
       "runtime": "nodejs20.x"
