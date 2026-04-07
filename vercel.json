@@ -1,13 +1,22 @@
 {
   "version": 2,
   "installCommand": "pnpm install",
-  "buildCommand": "pnpm --filter \"@workspace/macbook-neo\" build",
-  "outputDirectory": "artifacts/macbook-neo/dist/public",
-  "functions": {
-    "api/index.ts": {
-      "runtime": "nodejs20.x"
+  "builds": [
+    {
+      "src": "artifacts/macbook-neo/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist/public"
+      }
+    },
+    {
+      "src": "api/index.ts",
+      "use": "@vercel/node",
+      "config": {
+        "runtime": "nodejs20.x"
+      }
     }
-  },
+  ],
   "routes": [
     {
       "handle": "filesystem"
