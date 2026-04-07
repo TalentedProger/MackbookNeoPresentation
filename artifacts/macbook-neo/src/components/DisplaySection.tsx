@@ -34,7 +34,7 @@ export default function DisplaySection() {
         }`} />
       </div>
 
-      <div ref={ref} className="relative max-w-7xl mx-auto px-6 md:px-12 lg:px-20 py-24 md:py-40">
+      <div ref={ref} className="relative max-w-[96rem] mx-auto px-6 md:px-12 lg:px-20 py-24 md:py-40">
         {/* Eyebrow */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -80,7 +80,11 @@ export default function DisplaySection() {
               <img
                 src={displayImg}
                 alt="MacBook Neo display"
-                className="w-full object-contain drop-shadow-2xl"
+                width={1280}
+                height={781}
+                loading="lazy"
+                decoding="async"
+                className="w-full h-auto object-contain drop-shadow-2xl"
                 data-testid="img-display"
               />
             </motion.div>

@@ -10,14 +10,14 @@ export default function HeroSection() {
   const { openPreOrder } = useModal();
   const lang = isRu ? "ru" : "en";
   const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"], layoutEffect: false });
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const contentOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
 
   return (
     <section
       ref={ref}
       id="overview"
-      className={`relative min-h-screen flex flex-col items-center overflow-hidden transition-colors duration-700 ${
+      className={`relative min-h-0 md:min-h-screen flex flex-col items-center overflow-hidden transition-colors duration-700 ${
         isDark ? "bg-black" : "bg-[#f5f5f7]"
       }`}
     >
@@ -92,12 +92,17 @@ export default function HeroSection() {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
-        className="relative z-10 w-full max-w-sm sm:max-w-lg md:max-w-2xl mx-auto px-4 mt-auto flex items-end"
+        className="relative z-10 w-full max-w-sm sm:max-w-lg md:max-w-2xl mx-auto px-4 mt-12 sm:mt-auto flex items-end"
       >
         <img
           src={heroImg}
           alt="MacBook Neo"
-          className="w-full object-contain object-bottom"
+          width={978}
+          height={846}
+          loading="eager"
+          decoding="async"
+          fetchPriority="high"
+          className="w-full h-auto object-contain object-bottom"
           data-testid="img-hero"
         />
       </motion.div>

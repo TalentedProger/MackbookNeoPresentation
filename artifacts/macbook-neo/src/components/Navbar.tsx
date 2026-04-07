@@ -16,6 +16,14 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handler);
   }, []);
 
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+  }, [mobileOpen]);
+
   const navLinks = [
     { href: "#overview", label: getText(t.nav.overview, lang) },
     { href: "#display", label: getText(t.nav.specs, lang) },
@@ -35,7 +43,7 @@ export default function Navbar() {
           : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-12 h-14 flex items-center justify-between">
+      <div className="max-w-[96rem] mx-auto px-6 md:px-12 h-14 flex items-center justify-between">
         <a href="#" className="flex items-center gap-2 group" data-testid="nav-logo">
           <svg
             viewBox="0 0 24 24"
@@ -64,66 +72,68 @@ export default function Navbar() {
           ))}
         </div>
 
-        <div className="flex items-center gap-2">
-          <motion.button
-            onClick={toggleLanguage}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            data-testid="btn-toggle-language"
-            className={`relative flex items-center h-7 rounded-full text-xs font-semibold px-3 transition-all duration-300 border ${
-              isDark
-                ? "bg-white/10 border-white/15 text-white hover:bg-white/20"
-                : "bg-black/5 border-black/10 text-black hover:bg-black/10"
-            }`}
-          >
-            <AnimatePresence mode="wait">
-              <motion.span
-                key={lang}
-                initial={{ opacity: 0, y: -6 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 6 }}
-                transition={{ duration: 0.18 }}
-              >
-                {isRu ? "РУ" : "EN"}
-              </motion.span>
-            </AnimatePresence>
-          </motion.button>
+        <div className="flex items-center gap-2 relative z-50">
+          <div className="hidden md:flex items-center gap-2">
+            <motion.button
+              onClick={toggleLanguage}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              data-testid="btn-toggle-language"
+              className={`relative flex items-center h-7 rounded-full text-xs font-semibold px-3 transition-all duration-300 border ${
+                isDark
+                  ? "bg-white/10 border-white/15 text-white hover:bg-white/20"
+                  : "bg-black/5 border-black/10 text-black hover:bg-black/10"
+              }`}
+            >
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={lang}
+                  initial={{ opacity: 0, y: -6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 6 }}
+                  transition={{ duration: 0.18 }}
+                >
+                  {isRu ? "РУ" : "EN"}
+                </motion.span>
+              </AnimatePresence>
+            </motion.button>
 
-          <motion.button
-            onClick={toggleTheme}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            data-testid="btn-toggle-theme"
-            className={`relative flex items-center justify-center w-8 h-8 rounded-full transition-all duration-300 border ${
-              isDark
-                ? "bg-white/10 border-white/15 text-white hover:bg-white/20"
-                : "bg-black/5 border-black/10 text-black hover:bg-black/10"
-            }`}
-          >
-            <AnimatePresence mode="wait">
-              {isDark ? (
-                <motion.div
-                  key="sun"
-                  initial={{ rotate: -90, opacity: 0 }}
-                  animate={{ rotate: 0, opacity: 1 }}
-                  exit={{ rotate: 90, opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <Sun className="w-3.5 h-3.5" />
-                </motion.div>
-              ) : (
-                <motion.div
-                  key="moon"
-                  initial={{ rotate: 90, opacity: 0 }}
-                  animate={{ rotate: 0, opacity: 1 }}
-                  exit={{ rotate: -90, opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <Moon className="w-3.5 h-3.5" />
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </motion.button>
+            <motion.button
+              onClick={toggleTheme}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              data-testid="btn-toggle-theme"
+              className={`relative flex items-center justify-center w-8 h-8 rounded-full transition-all duration-300 border ${
+                isDark
+                  ? "bg-white/10 border-white/15 text-white hover:bg-white/20"
+                  : "bg-black/5 border-black/10 text-black hover:bg-black/10"
+              }`}
+            >
+              <AnimatePresence mode="wait">
+                {isDark ? (
+                  <motion.div
+                    key="sun"
+                    initial={{ rotate: -90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: 90, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Sun className="w-3.5 h-3.5" />
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="moon"
+                    initial={{ rotate: 90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: -90, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Moon className="w-3.5 h-3.5" />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.button>
+          </div>
 
           <motion.button
             whileHover={{ scale: 1.02 }}
@@ -139,14 +149,14 @@ export default function Navbar() {
           </motion.button>
 
           <button
-            className="md:hidden ml-1"
+            className="md:hidden w-10 h-10 flex items-center justify-center -mr-2"
             onClick={() => setMobileOpen(!mobileOpen)}
             data-testid="btn-mobile-menu"
           >
-            <div className={`w-5 flex flex-col gap-1 ${isDark ? "text-white" : "text-black"}`}>
-              <span className={`block h-px transition-all duration-200 ${isDark ? "bg-white" : "bg-black"} ${mobileOpen ? "rotate-45 translate-y-1.5" : ""}`} />
-              <span className={`block h-px transition-all duration-200 ${isDark ? "bg-white" : "bg-black"} ${mobileOpen ? "opacity-0" : ""}`} />
-              <span className={`block h-px transition-all duration-200 ${isDark ? "bg-white" : "bg-black"} ${mobileOpen ? "-rotate-45 -translate-y-1.5" : ""}`} />
+            <div className="w-5 h-3.5 relative flex flex-col justify-between">
+              <span className={`absolute left-0 w-full h-[1.5px] rounded-full transition-all duration-300 ease-out origin-center ${isDark ? "bg-white" : "bg-black"} ${mobileOpen ? "top-1/2 -translate-y-1/2 rotate-45" : "top-0"}`} />
+              <span className={`absolute left-0 top-1/2 -translate-y-1/2 w-full h-[1.5px] rounded-full transition-all duration-200 ease-out origin-center ${isDark ? "bg-white" : "bg-black"} ${mobileOpen ? "opacity-0 scale-x-0" : "opacity-100"}`} />
+              <span className={`absolute left-0 w-full h-[1.5px] rounded-full transition-all duration-300 ease-out origin-center ${isDark ? "bg-white" : "bg-black"} ${mobileOpen ? "top-1/2 -translate-y-1/2 -rotate-45" : "bottom-0"}`} />
             </div>
           </button>
         </div>
@@ -155,34 +165,81 @@ export default function Navbar() {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className={`md:hidden overflow-hidden border-t ${
-              isDark ? "bg-black/90 border-white/10" : "bg-white/90 border-black/10"
-            } backdrop-blur-2xl`}
+            initial={{ opacity: 0, clipPath: "circle(0px at top right)" }}
+            animate={{ opacity: 1, clipPath: "circle(150vmax at top right)" }}
+            exit={{ opacity: 0, clipPath: "circle(0px at top right)" }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            style={{ willChange: "clip-path, opacity", transform: "translateZ(0)" }}
+            className={`fixed inset-0 z-40 md:hidden w-full h-[100dvh] flex flex-col pb-8 pt-24 px-8 overscroll-contain ${
+              isDark ? "bg-[#0a0a0a]" : "bg-[#f5f5f7]"
+            }`}
           >
-            <div className="px-6 py-4 flex flex-col gap-4">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setMobileOpen(false)}
-                  className={`text-base font-medium py-1 ${isDark ? "text-white/80" : "text-black/70"}`}
-                >
-                  {link.label}
-                </a>
-              ))}
-              <a
-                href="#cta"
-                onClick={() => setMobileOpen(false)}
-                className={`inline-flex items-center justify-center h-10 rounded-full text-sm font-semibold mt-1 transition-all ${
-                  isDark ? "bg-white text-black" : "bg-black text-white"
-                }`}
+            <div className="flex flex-col h-full">
+              {/* Navigation links */}
+              <div className="flex flex-col gap-6 flex-1 mt-8">
+                {navLinks.map((link, i) => (
+                  <motion.a
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setMobileOpen(false)}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.5, delay: 0.1 + i * 0.05, ease: [0.22, 1, 0.36, 1] }}
+                    className={`text-4xl font-bold tracking-tight ${isDark ? "text-white" : "text-black"}`}
+                  >
+                    {link.label}
+                  </motion.a>
+                ))}
+              </div>
+
+              {/* Bottom block: toggles + action */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 20 }}
+                transition={{ duration: 0.5, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                className="flex flex-col gap-6 w-full shrink-0"
               >
-                {getText(t.nav.buy, lang)}
-              </a>
+                <div className={`h-14 px-4 rounded-2xl flex items-center justify-between border ${
+                  isDark ? "bg-white/[0.03] border-white/10" : "bg-black/[0.02] border-black/10"
+                }`}>
+                  <span className={`text-sm font-medium ${isDark ? "text-white/60" : "text-black/60"}`}>
+                    {isRu ? "Настройки" : "Settings"}
+                  </span>
+                  <div className="flex items-center gap-3">
+                    <motion.button
+                      onClick={toggleLanguage}
+                      whileTap={{ scale: 0.95 }}
+                      className={`flex items-center h-10 w-16 justify-center rounded-2xl text-sm font-semibold transition-all ${
+                        isDark ? "bg-white/10 text-white" : "bg-black/5 text-black"
+                      }`}
+                    >
+                      {isRu ? "РУ" : "EN"}
+                    </motion.button>
+
+                    <motion.button
+                      onClick={toggleTheme}
+                      whileTap={{ scale: 0.95 }}
+                      className={`flex items-center justify-center w-10 h-10 rounded-2xl transition-all ${
+                        isDark ? "bg-white/10 text-white" : "bg-black/5 text-black"
+                      }`}
+                    >
+                      {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+                    </motion.button>
+                  </div>
+                </div>
+
+                <a
+                  href="#cta"
+                  onClick={() => setMobileOpen(false)}
+                  className={`w-full flex items-center justify-center h-14 rounded-full text-base font-semibold transition-all ${
+                    isDark ? "bg-white text-black" : "bg-black text-white"
+                  }`}
+                >
+                  {getText(t.nav.buy, lang)}
+                </a>
+              </motion.div>
             </div>
           </motion.div>
         )}

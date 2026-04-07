@@ -17,12 +17,12 @@ const ThemeContext = createContext<ThemeContextType | null>(null);
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setTheme] = useState<Theme>(() => {
     const saved = localStorage.getItem("theme");
-    return (saved as Theme) || "light";
+    return saved === "dark" || saved === "light" ? saved : "light";
   });
 
   const [language, setLanguage] = useState<Language>(() => {
     const saved = localStorage.getItem("language");
-    return (saved as Language) || "ru";
+    return saved === "ru" || saved === "en" ? saved : "ru";
   });
 
   useEffect(() => {

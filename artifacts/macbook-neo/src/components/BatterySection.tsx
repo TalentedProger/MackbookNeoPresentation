@@ -23,7 +23,7 @@ export default function BatterySection() {
           : "bg-[radial-gradient(ellipse_60%_40%_at_80%_50%,rgba(99,179,237,0.12),transparent)]"
       }`} />
 
-      <div ref={ref} className="relative max-w-7xl mx-auto px-6 md:px-12 lg:px-20 py-24 md:py-40">
+      <div ref={ref} className="relative max-w-[96rem] mx-auto px-6 md:px-12 lg:px-20 py-24 md:py-40">
         <div className="grid lg:grid-cols-2 gap-20 items-center">
           {/* Left: battery ring visual */}
           <motion.div

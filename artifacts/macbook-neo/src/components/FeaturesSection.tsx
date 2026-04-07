@@ -29,7 +29,7 @@ export default function FeaturesSection() {
         isDark ? "bg-[#050505]" : "bg-white"
       }`}
     >
-      <div ref={ref} className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 py-24 md:py-40">
+      <div ref={ref} className="max-w-[96rem] mx-auto px-6 md:px-12 lg:px-20 py-24 md:py-40">
         {/* Header */}
         <div className="mb-20 md:mb-28">
           <motion.p

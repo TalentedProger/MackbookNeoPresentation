@@ -24,7 +24,7 @@ export default function IntroSection() {
       style={{ minHeight: 620 }}
     >
       {/* Text content — left aligned with normal padding */}
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 pt-24 md:pt-32 pb-24">
+      <div className="relative z-10 max-w-[96rem] mx-auto px-6 md:px-12 lg:px-20 pt-24 md:pt-32 pb-24">
         <div ref={ref} className="max-w-xl">
           <motion.h2
             initial={{ opacity: 0, y: 40 }}
@@ -42,7 +42,7 @@ export default function IntroSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-            className={`text-lg leading-relaxed mb-14 ${
+            className={`text-lg leading-relaxed mb-28 sm:mb-14 ${
               isDark ? "text-white/55" : "text-black/50"
             }`}
             data-testid="intro-body"
@@ -55,11 +55,9 @@ export default function IntroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="flex gap-0"
-            style={{
-              borderTop: `1px solid ${isDark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.1)"}`,
-              borderBottom: `1px solid ${isDark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.1)"}`,
-            }}
+            className={`flex gap-2 sm:gap-0 w-full sm:border-y ${
+              isDark ? "sm:border-white/10" : "sm:border-black/10"
+            }`}
           >
             {stats.map((stat, i) => (
               <motion.div
@@ -67,27 +65,36 @@ export default function IntroSection() {
                 initial={{ opacity: 0, y: 16 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.38 + i * 0.1 }}
-                className="flex-1 px-5 py-5 first:pl-0 last:pr-0"
-                style={{
-                  borderRight: i < stats.length - 1
-                    ? `1px solid ${isDark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.1)"}`
-                    : "none",
-                }}
+                className={`flex-1 flex flex-col justify-center items-center text-center sm:items-start sm:text-left p-3 sm:px-5 sm:py-5 sm:first:pl-0 sm:last:pr-0 rounded-2xl sm:rounded-none bg-[#111111]/50 backdrop-blur-xl border border-white/10 sm:bg-transparent sm:backdrop-blur-0 sm:border-none sm:!border-r ${
+                  i < stats.length - 1
+                    ? isDark
+                      ? "sm:border-white/10"
+                      : "sm:border-black/10"
+                    : "sm:!border-r-0"
+                }`}
                 data-testid={`intro-stat-${i}`}
               >
-                <div className={`text-3xl md:text-4xl font-black tracking-tighter leading-none ${
-                  isDark ? "text-white" : "text-black"
-                }`}>
+                <div
+                  className={`text-2xl sm:text-3xl md:text-4xl font-black tracking-tighter leading-none text-white ${
+                    isDark ? "sm:text-white" : "sm:text-black"
+                  }`}
+                >
                   {stat.value}
                   {stat.unit && (
-                    <span className={`text-base font-semibold ml-0.5 ${
-                      isDark ? "text-white/60" : "text-black/55"
-                    }`}>{stat.unit}</span>
+                    <span
+                      className={`text-xs md:text-base font-semibold ml-0.5 text-white/70 ${
+                        isDark ? "sm:text-white/60" : "sm:text-black/55"
+                      }`}
+                    >
+                      {stat.unit}
+                    </span>
                   )}
                 </div>
-                <div className={`text-xs mt-2 font-medium tracking-wide uppercase ${
-                  isDark ? "text-white/35" : "text-black/35"
-                }`}>
+                <div
+                  className={`text-[9px] min-[380px]:text-[10px] sm:text-xs mt-1.5 sm:mt-2 font-medium tracking-wide uppercase text-white/60 ${
+                    isDark ? "sm:text-white/35" : "sm:text-black/35"
+                  }`}
+                >
                   {stat.label}
                 </div>
               </motion.div>
@@ -101,13 +108,17 @@ export default function IntroSection() {
         initial={{ opacity: 0, x: 60 }}
         animate={inView ? { opacity: 1, x: 0 } : {}}
         transition={{ duration: 1.1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute bottom-0 right-0 w-[65%] max-w-none hidden lg:block"
+        className="absolute bottom-0 right-0 w-full sm:w-[80%] lg:w-[65%] max-w-none block z-0 pointer-events-none"
         ref={ref}
       >
         <img
           src={keyboardImg}
           alt="MacBook Neo keyboard"
-          className="w-full object-contain object-bottom-right block"
+          width={1199}
+          height={633}
+          loading="lazy"
+          decoding="async"
+          className="w-full h-auto object-contain object-bottom-right block"
           style={{ display: "block", marginLeft: "auto" }}
           data-testid="img-intro-keyboard"
         />

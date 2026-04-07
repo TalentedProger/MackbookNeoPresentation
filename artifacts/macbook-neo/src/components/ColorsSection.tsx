@@ -33,7 +33,7 @@ export default function ColorsSection() {
         className="absolute inset-0 pointer-events-none"
       />
 
-      <div ref={ref} className="relative max-w-7xl mx-auto px-6 md:px-12 lg:px-20 py-24 md:py-40">
+      <div ref={ref} className="relative max-w-[96rem] mx-auto px-6 md:px-12 lg:px-20 py-24 md:py-40">
         <div className="grid lg:grid-cols-2 gap-16 items-stretch min-h-[640px]">
           {/* Left: eyebrow + headline + body + color picker */}
           <motion.div
@@ -130,7 +130,11 @@ export default function ColorsSection() {
             <img
               src={colorsFanImg}
               alt="MacBook Neo in four colors"
-              className="h-full w-auto max-h-[800px] object-contain drop-shadow-2xl"
+              width={800}
+              height={506}
+              loading="lazy"
+              decoding="async"
+              className="h-full w-auto max-h-[800px] object-contain drop-shadow-2xl scale-[1.25] origin-center"
               data-testid="img-colors-hands"
             />
           </motion.div>

@@ -16,7 +16,7 @@ export default function Footer() {
         ? "bg-[#0a0a0a] border-white/[0.05]"
         : "bg-[#f5f5f7] border-black/[0.06]"
     }`}>
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 py-12">
+      <div className="max-w-[96rem] mx-auto px-6 md:px-12 lg:px-20 py-12">
         {/* Top: Logo + tagline */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-8">
           <div className="flex items-center gap-2">

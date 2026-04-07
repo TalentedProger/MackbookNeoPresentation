@@ -35,7 +35,7 @@ export default function ChipSection() {
         }`} />
       </div>
 
-      <div ref={ref} className="relative max-w-7xl mx-auto px-6 md:px-12 lg:px-20 py-24 md:py-40">
+      <div ref={ref} className="relative max-w-[96rem] mx-auto px-6 md:px-12 lg:px-20 py-24 md:py-40">
         {/* Eyebrow */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -49,9 +49,9 @@ export default function ChipSection() {
           {getText(t.chip.eyebrow, lang)}
         </motion.p>
 
-        <div className="grid lg:grid-cols-2 gap-20 items-center">
-          {/* Left: headline + body + stats */}
-          <div>
+        <div className="grid lg:grid-cols-2 gap-x-20 gap-y-10 items-center">
+          {/* Left: headline + body */}
+          <div className="order-1 lg:order-none">
             <h2 className="overflow-hidden mb-6">
               {chipLines.map((line, i) => (
                 <motion.span
@@ -80,15 +80,37 @@ export default function ChipSection() {
             >
               {getText(t.chip.body, lang)}
             </motion.p>
+          </div>
 
-            <div className="grid grid-cols-2 gap-3">
+          {/* Right: A18 chip image */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.85 }}
+            animate={inView ? { opacity: 1, scale: 1 } : {}}
+            transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            className="order-2 lg:order-none flex justify-center"
+          >
+            <img
+              src={chipImg}
+              alt="A18 Pro chip"
+              width={824}
+              height={842}
+              loading="lazy"
+              decoding="async"
+              className="w-72 h-72 md:w-96 md:h-96 object-contain drop-shadow-2xl"
+              data-testid="img-chip"
+            />
+          </motion.div>
+
+          {/* Stats cards */}
+          <div className="order-3 lg:order-none lg:col-start-1">
+            <div className="grid grid-cols-2 gap-3 auto-rows-fr sm:auto-rows-auto">
               {stats.map((stat, i) => (
                 <motion.div
                   key={i}
                   initial={{ opacity: 0, y: 20 }}
                   animate={inView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.5, delay: 0.4 + i * 0.08 }}
-                  className={`rounded-2xl p-4 border ${
+                  className={`rounded-2xl p-4 border h-full min-h-[120px] sm:min-h-0 flex flex-col ${
                     isDark
                       ? "bg-white/[0.03] border-white/[0.07] hover:bg-white/[0.06]"
                       : "bg-black/[0.02] border-black/[0.06] hover:bg-black/[0.04]"
@@ -103,21 +125,6 @@ export default function ChipSection() {
               ))}
             </div>
           </div>
-
-          {/* Right: A18 chip image */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.85 }}
-            animate={inView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="flex justify-center"
-          >
-            <img
-              src={chipImg}
-              alt="A18 Pro chip"
-              className="w-72 h-72 md:w-96 md:h-96 object-contain drop-shadow-2xl"
-              data-testid="img-chip"
-            />
-          </motion.div>
         </div>
       </div>
     </section>

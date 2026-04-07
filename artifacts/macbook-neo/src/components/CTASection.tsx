@@ -32,12 +32,15 @@ export default function CTASection() {
         <source src={ctaVideo} type="video/mp4" />
       </video>
 
-      {/* Dark overlay */}
-      <div className="absolute inset-0 bg-black/35" style={{ zIndex: 1 }} />
+      {/* Dark overlay (uniform layer) */}
+      <div
+        className="absolute inset-0 bg-black/55"
+        style={{ zIndex: 1 }}
+      />
 
       <div
         ref={ref}
-        className="relative max-w-5xl mx-auto px-6 md:px-12 py-32 md:py-48 text-center"
+        className="relative max-w-[77rem] mx-auto px-6 md:px-12 py-32 md:py-48 text-center"
         style={{ zIndex: 2 }}
       >
         {/* Apple logo */}
@@ -103,7 +106,7 @@ export default function CTASection() {
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.96 }}
             data-testid="btn-cta-buy"
-            className="h-12 px-8 rounded-full font-semibold text-base flex items-center transition-all"
+            className="h-12 w-full sm:w-72 md:w-80 px-8 rounded-full font-semibold text-base flex items-center justify-center transition-all whitespace-nowrap"
             style={{
               background: "rgba(255,255,255,0.18)",
               backdropFilter: "blur(20px)",
@@ -119,7 +122,7 @@ export default function CTASection() {
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.96 }}
             data-testid="btn-cta-compare"
-            className="h-12 px-8 rounded-full font-semibold text-base flex items-center transition-all"
+            className="h-12 w-full sm:w-72 md:w-80 px-8 rounded-full font-semibold text-base flex items-center justify-center transition-all whitespace-nowrap"
             style={{
               background: "rgba(255,255,255,0.06)",
               backdropFilter: "blur(16px)",
