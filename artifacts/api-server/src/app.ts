@@ -1,4 +1,4 @@
-import express from "express";
+import express, { type RequestHandler } from "express";
 import cors from "cors";
 import pinoHttp from "pino-http";
 import type { IncomingMessage, ServerResponse } from "node:http";
@@ -10,25 +10,27 @@ type PinoRes = ServerResponse;
 
 const app = express();
 
-app.use(
-  pinoHttp({
-    logger,
-    serializers: {
-      req(req: PinoReq) {
-        return {
-          id: req.id,
-          method: req.method,
-          url: req.url?.split("?")[0],
-        };
-      },
-      res(res: PinoRes) {
-        return {
-          statusCode: res.statusCode,
-        };
-      },
+const pinoHttpMiddleware = (pinoHttp as unknown as (
+  options: Record<string, unknown>,
+) => RequestHandler)({
+  logger,
+  serializers: {
+    req(req: PinoReq) {
+      return {
+        id: req.id,
+        method: req.method,
+        url: req.url?.split("?")[0],
+      };
     },
-  }),
-);
+    res(res: PinoRes) {
+      return {
+        statusCode: res.statusCode,
+      };
+    },
+  },
+});
+
+app.use(pinoHttpMiddleware);
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
