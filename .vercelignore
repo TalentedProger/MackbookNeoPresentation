@@ -1,0 +1,22 @@
+# Files that Vercel doesn't need — exclude to speed up deployment
+
+# Replit-specific files (not needed for build)
+.replit
+.replitignore
+.local/
+replit.md
+
+# Git history
+.git
+
+# IDE files
+.vscode/
+.cursor/
+.agents/
+
+# API server — not used in the static macbook-neo deployment
+# (can be uncommitted if deploying the API as Vercel serverless functions)
+api/
+
+# NOTE: attached_assets/ is REQUIRED — Vite imports images from there
+# NOTE: lib/, scripts/, artifacts/api-server — required by pnpm workspace resolution

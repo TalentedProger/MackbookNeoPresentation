@@ -1,5 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+/* Font is loaded via <link rel="preload"> in index.html for optimal LCP */
 @import "tailwindcss";
+
+/* Battery ring spin — CSS animation instead of JS for GPU compositing */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Respect reduced motion for battery ring */
+@media (prefers-reduced-motion: reduce) {
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(0deg); }
+  }
+}
 @import "tw-animate-css";
 @plugin "@tailwindcss/typography";
 
@@ -251,5 +265,36 @@
 
   .section-padding {
     @apply px-6 md:px-12 lg:px-20 xl:px-28;
+  }
+
+  /* Performance: GPU-accelerated animation layers */
+  .gpu-layer {
+    transform: translateZ(0);
+    will-change: transform;
+    backface-visibility: hidden;
+  }
+
+  /* Reduce animation burden for users who prefer reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* Smooth font rendering */
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Reserve space for images to prevent CLS */
+  img {
+    content-visibility: auto;
   }
 }

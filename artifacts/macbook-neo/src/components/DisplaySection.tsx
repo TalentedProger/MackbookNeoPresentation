@@ -79,11 +79,12 @@ export default function DisplaySection() {
             >
               <img
                 src={displayImg}
-                alt="MacBook Neo display"
+                alt="MacBook Neo Liquid Retina display — edge to edge"
                 width={1280}
                 height={781}
                 loading="lazy"
                 decoding="async"
+                sizes="(max-width: 1024px) 100vw, 50vw"
                 className="w-full h-auto object-contain drop-shadow-2xl"
                 data-testid="img-display"
               />

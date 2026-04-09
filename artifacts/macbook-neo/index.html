@@ -2,12 +2,138 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-    <title>MacBook Neo</title>
+    <!-- Viewport: allow user zoom (accessibility) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- ============================================================
+         PRIMARY SEO — ENGLISH
+    ============================================================ -->
+    <title>MacBook Neo 2026 — Hello, Neo. A18 Pro · Liquid Retina · 16h Battery</title>
+    <meta name="description" content="MacBook Neo 2026: Apple A18 Pro chip, 13-inch Liquid Retina display, up to 16 hours battery, silent fanless design. Starting from $599. Buy MacBook Neo — the thinnest premium laptop." />
+    <meta name="keywords" content="MacBook Neo, MacBook Neo 2026, Apple laptop, A18 Pro chip, Liquid Retina display, thin laptop, fanless MacBook, buy MacBook Neo, best MacBook 2026, premium laptop, lightweight laptop, Apple silicon" />
+
+    <!-- ============================================================
+         PRIMARY SEO — RUSSIAN
+    ============================================================ -->
+    <meta name="description:ru" content="MacBook Neo 2026: чип Apple A18 Pro, 13-дюймовый Liquid Retina дисплей, до 16 часов автономной работы, бесшумный без вентиляторов. От ₽89 990. Купить MacBook Neo — самый тонкий премиальный ноутбук Apple." />
+    <meta name="keywords:ru" content="MacBook Neo, MacBook Neo 2026, ноутбук Apple, чип A18 Pro, Liquid Retina дисплей, тонкий ноутбук, бесшумный MacBook, купить MacBook Neo, лучший MacBook 2026, премиальный ноутбук" />
+
+    <!-- ============================================================
+         INDEXING & CANONICAL
+    ============================================================ -->
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow" />
+    <link rel="canonical" href="https://macbook-neo.vercel.app/" />
+
+    <!-- Hreflang: bilingual SPA — same URL for both languages -->
+    <link rel="alternate" hreflang="en" href="https://macbook-neo.vercel.app/" />
+    <link rel="alternate" hreflang="ru" href="https://macbook-neo.vercel.app/" />
+    <link rel="alternate" hreflang="x-default" href="https://macbook-neo.vercel.app/" />
+
+    <!-- ============================================================
+         OPEN GRAPH (Facebook, Telegram, WhatsApp, LinkedIn)
+    ============================================================ -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://macbook-neo.vercel.app/" />
+    <meta property="og:site_name" content="MacBook Neo" />
+    <meta property="og:title" content="MacBook Neo 2026 — Hello, Neo." />
+    <meta property="og:description" content="Apple A18 Pro chip. 13-inch Liquid Retina. Up to 16 hours battery. Silent fanless design. Starting from $599." />
+    <meta property="og:image" content="https://macbook-neo.vercel.app/opengraph.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="MacBook Neo 2026 — Premium Apple laptop" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="ru_RU" />
+
+    <!-- ============================================================
+         TWITTER / X CARD
+    ============================================================ -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="MacBook Neo 2026 — Hello, Neo." />
+    <meta name="twitter:description" content="Apple A18 Pro chip. 13-inch Liquid Retina. Up to 16 hours. Fanless. From $599." />
+    <meta name="twitter:image" content="https://macbook-neo.vercel.app/opengraph.jpg" />
+    <meta name="twitter:image:alt" content="MacBook Neo 2026 — Premium Apple laptop" />
+
+    <!-- ============================================================
+         STRUCTURED DATA — Product (JSON-LD)
+    ============================================================ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "MacBook Neo",
+      "description": "Apple MacBook Neo 2026 — A18 Pro chip, 13-inch Liquid Retina display, up to 16 hours battery life, fanless silent design, starting from $599.",
+      "brand": {
+        "@type": "Brand",
+        "name": "Apple"
+      },
+      "model": "MacBook Neo 2026",
+      "category": "Laptop",
+      "image": [
+        "https://macbook-neo.vercel.app/opengraph.jpg"
+      ],
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "USD",
+        "price": "599",
+        "priceValidUntil": "2026-12-31",
+        "availability": "https://schema.org/PreOrder",
+        "url": "https://macbook-neo.vercel.app/"
+      },
+      "additionalProperty": [
+        { "@type": "PropertyValue", "name": "Chip", "value": "Apple A18 Pro" },
+        { "@type": "PropertyValue", "name": "Display", "value": "13-inch Liquid Retina 2408×1506" },
+        { "@type": "PropertyValue", "name": "Battery", "value": "Up to 16 hours" },
+        { "@type": "PropertyValue", "name": "Weight", "value": "1.23 kg" },
+        { "@type": "PropertyValue", "name": "RAM", "value": "8 GB unified memory" },
+        { "@type": "PropertyValue", "name": "Storage", "value": "256 GB or 512 GB SSD" }
+      ]
+    }
+    </script>
+
+    <!-- WebSite structured data for sitelinks search -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "url": "https://macbook-neo.vercel.app/",
+      "name": "MacBook Neo",
+      "description": "MacBook Neo 2026 — premium Apple laptop presentation",
+      "inLanguage": ["en", "ru"],
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://macbook-neo.vercel.app/#specs"
+      }
+    }
+    </script>
+
+    <!-- ============================================================
+         PERFORMANCE: FONTS (preconnect + preload for zero FOUT)
+    ============================================================ -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Primary weight (400) preloaded for critical text, rest deferred -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" media="print" onload="this.media='all'" />
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" />
+    </noscript>
+
+    <!-- ============================================================
+         FAVICON & THEME COLOR
+    ============================================================ -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)" />
+
+    <!-- ============================================================
+         MISCELLANEOUS
+    ============================================================ -->
+    <meta name="author" content="MacBook Neo" />
+    <meta name="generator" content="" />
+    <meta name="format-detection" content="telephone=no" />
+    <!-- Prevents iOS from auto-linking phone numbers -->
   </head>
   <body>
     <div id="root"></div>

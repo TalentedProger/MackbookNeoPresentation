@@ -129,11 +129,12 @@ export default function ColorsSection() {
           >
             <img
               src={colorsFanImg}
-              alt="MacBook Neo in four colors"
+              alt="MacBook Neo available in four colors: Silver, Pink, Yellow, Blue"
               width={800}
               height={506}
               loading="lazy"
               decoding="async"
+              sizes="(max-width: 1024px) 100vw, 50vw"
               className="h-full w-auto max-h-[800px] object-contain drop-shadow-2xl scale-[1.25] origin-center"
               data-testid="img-colors-hands"
             />

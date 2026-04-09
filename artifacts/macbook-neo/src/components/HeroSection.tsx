@@ -96,14 +96,16 @@ export default function HeroSection() {
       >
         <img
           src={heroImg}
-          alt="MacBook Neo"
+          alt="MacBook Neo — thin premium laptop"
           width={978}
           height={846}
           loading="eager"
           decoding="async"
           fetchPriority="high"
+          sizes="(max-width: 640px) 100vw, (max-width: 768px) 90vw, (max-width: 1024px) 70vw, 50vw"
           className="w-full h-auto object-contain object-bottom"
           data-testid="img-hero"
+          style={{ willChange: "opacity" }}
         />
       </motion.div>
     </section>

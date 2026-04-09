@@ -113,13 +113,14 @@ export default function IntroSection() {
       >
         <img
           src={keyboardImg}
-          alt="MacBook Neo keyboard"
+          alt="MacBook Neo keyboard — ultra-thin design"
           width={1199}
           height={633}
           loading="lazy"
           decoding="async"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 65vw"
           className="w-full h-auto object-contain object-bottom-right block"
-          style={{ display: "block", marginLeft: "auto" }}
+          style={{ display: "block", marginLeft: "auto", willChange: "transform, opacity" }}
           data-testid="img-intro-keyboard"
         />
       </motion.div>

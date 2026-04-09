@@ -33,10 +33,8 @@ export default function BatterySection() {
             className="flex justify-center lg:justify-start"
           >
             <div className="relative w-64 h-64 md:w-80 md:h-80 flex items-center justify-center">
-              {/* Outer ring */}
-              <motion.div
-                animate={{ rotate: [0, 360] }}
-                transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+              {/* Outer ring — CSS animation for better GPU compositing */}
+              <div
                 className="absolute inset-0 rounded-full"
                 style={{
                   background: isDark
@@ -44,10 +42,12 @@ export default function BatterySection() {
                     : "conic-gradient(from 0deg, rgba(59,130,246,0.7) 0%, rgba(59,130,246,0.7) 70%, rgba(59,130,246,0.1) 70%)",
                   padding: "3px",
                   borderRadius: "50%",
+                  animation: "spin 30s linear infinite",
+                  willChange: "transform",
                 }}
               >
                 <div className={`w-full h-full rounded-full ${isDark ? "bg-black" : "bg-white"}`} />
-              </motion.div>
+              </div>
 
               {/* Inner content */}
               <div className="relative flex flex-col items-center">

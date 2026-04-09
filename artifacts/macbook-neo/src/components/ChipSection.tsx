@@ -91,11 +91,12 @@ export default function ChipSection() {
           >
             <img
               src={chipImg}
-              alt="A18 Pro chip"
+              alt="Apple A18 Pro chip — 6-core CPU, 5-core GPU"
               width={824}
               height={842}
               loading="lazy"
               decoding="async"
+              sizes="(max-width: 768px) 288px, 384px"
               className="w-72 h-72 md:w-96 md:h-96 object-contain drop-shadow-2xl"
               data-testid="img-chip"
             />
